@@ -144,13 +144,6 @@ notebooks/simcse_and_classification.ipynb
 - RoBERTa provides higher recall but does not translate proportionally to accuracy gains  
 - Highlights importance of **re-ranking and evidence filtering**
 
-### Key Insights
-
-* Hybrid retrieval boosts recall
-* Curriculum learning improves stability
-* TinyLlama outperforms larger models
-* Strong pipeline > large model alone
-
 ---
 
 ## 📂 Project Structure
@@ -230,7 +223,7 @@ python eval.py \
 
 ## 👥 Contributors
 
-* **Yechen Deng** — Retrieval, re-ranking, LLM classification
+* **Yechen Deng** — Hybrid Retrieval, Cross-encoder re-ranking, LLM classification
 * **Zhenyuan He** — SimCSE, FAISS, LLM classification
 * **Wen Zhou** — BERTopic, analysis, experiments
 
