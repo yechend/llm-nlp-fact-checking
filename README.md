@@ -120,7 +120,7 @@ notebooks/simcse_and_classification.ipynb
 ---
 
 ## 📊 Results
-![Model Performance]
+[Model Performance]
 <p align="center">
   <img src="local_data/results.png" width="700"/>
 </p>
@@ -135,7 +135,7 @@ notebooks/simcse_and_classification.ipynb
 
 ### 📈 Retrieval Trade-off (Recall vs Accuracy)
 
-![Recall vs Accuracy]
+[Recall vs Accuracy]
 <p align="center">
   <img src="local_data/recall_accuracy.png" width="700"/>
 </p>
