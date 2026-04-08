@@ -19,8 +19,7 @@ The system processes **1.2M+ evidence sentences** and classifies claims into:
 * `NOT_ENOUGH_INFO`
 * `DISPUTED`
 
-Developed as part of **COMP90042 (NLP, University of Melbourne)**, this project demonstrates a **modular, production-style NLP pipeline**.
-
+Developed as part of **University of Melbourne**, this project demonstrates a **scalable, modular NLP pipeline for end-to-end retrieval, re-ranking, and classification of large-scale unstructured data**.
 ---
 
 ## 🏗️ System Architecture
@@ -231,4 +230,4 @@ python eval.py \
 
 ## 📄 License
 
-MIT License
+This project is licensed under the MIT License.
