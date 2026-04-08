@@ -194,7 +194,7 @@ Open:
 notebooks/main_info_retrieval_pipeline.ipynb
 ```
 
-Run in order:
+Run sequentially:
 
 * Preprocessing
 * Retrieval
