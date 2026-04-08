@@ -18,9 +18,8 @@ The system processes **1.2M+ evidence sentences** and classifies claims into:
 * `REFUTES`
 * `NOT_ENOUGH_INFO`
 * `DISPUTED`
---
-Developed as part of **University of Melbourne**, this project demonstrates a **scalable, modular NLP pipeline for end-to-end retrieval, re-ranking, and classification of large-scale unstructured data**.
----
+
+Developed at the University of Melbourne, this project demonstrates a scalable, modular NLP pipeline for end-to-end retrieval, re-ranking, and classification of large-scale unstructured data.
 
 ## 🏗️ System Architecture
 
