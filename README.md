@@ -165,7 +165,6 @@ notebooks/simcse_and_classification.ipynb
 ├── saved_model/
 ├── local_data/
 ├── log/
-│
 ├── README.md
 ├── LICENSE
 ```
