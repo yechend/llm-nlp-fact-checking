@@ -1,114 +1,224 @@
-# COMP90042 Project — Multi-Phase Fact-Checking of Climate Claims  
-**Group 24 — Semester 1, 2025**
+# 🧠 LLM-NLP Fact-Checking Pipeline
 
-## All fin-tuned models can be found at:
-https://drive.google.com/drive/folders/1spT1gTUSkm4mP_mTiW0CES2dqKgLPRq_?usp=drive_link
-##  Overview
-This project implements a multi-stage pipeline for fact-checking climate-related claims. The system retrieves evidence from a large corpus and classifies claims into four categories: `SUPPORTS`, `REFUTES`, `NOT_ENOUGH_INFO`, or `DISPUTED`. The pipeline combines lexical retrieval, semantic dense encoding, transformer-based re-ranking, and zero-shot classification using compact LLMs.
+### Multi-Phase Retrieval & Classification for Climate Claims
 
-##  Pipeline Architecture1
+---
 
-Conducted in: `COMP90042_2025/COMP90042_Project_2025.ipynb` 
+## 📌 Overview
 
-1. **Preprocessing**  
-   - Stage-specific tokenization, lemmatization, and stopword removal.
-   - Adaptive strategy for each module: retrieval vs. classification.
+This project implements a **multi-stage fact-checking system** for climate-related claims using:
 
-2. **Hybrid Retrieval**
-   - `BM25` lexical retrieval (Pyserini).
-   - `MiniLM` bi-encoder (DPR framework) for semantic retrieval.
-   - Merge top 100 from each into a hybrid pool.
+* Hybrid information retrieval (BM25 + dense embeddings)
+* Transformer-based re-ranking
+* Prompt-based classification with lightweight LLMs
 
-3. **Cross-Encoder Re-ranking**
-   - Re-ranks using a `MiniLM` cross-encoder.
-   - Curriculum training: easy → hard negatives.
-   - Output: Top-5 evidence per claim.
+The system processes **1.2M+ evidence sentences** and classifies claims into:
 
-4. **Zero-Shot Classification**
-   - In-context classification using `TinyLlama`, `Qwen1.5`, and `Phi-1.5`.
-   - Prompts instruct model to handle `DISPUTED` and `NOT_ENOUGH_INFO` cases explicitly.
+* `SUPPORTS`
+* `REFUTES`
+* `NOT_ENOUGH_INFO`
+* `DISPUTED`
 
+Developed as part of **COMP90042 (NLP, University of Melbourne)**, this project demonstrates a **modular, production-style NLP pipeline**.
 
-## Pipeline Architecture2
+📄 Full report:
+👉 [Project Report](docs/NLP.pdf)
 
-1. **Perplexity Calculation**  
-   Conducted in: `COMP90042_2025/DataSet Processing_PPL.ipynb`  
-   This step computes the perplexity of each evidence text to assist with filtering.
+---
 
-2. **Two-Stage FAISS Retrieval for Climate-Related Evidence**  
-   Conducted in: `COMP90042_2025/DataSet Processing2_Faiss.ipynb`  
-   This step applies FAISS clustering twice to select climate-related evidence based on semantic similarity and perplexity scores.
+## 🏗️ System Architecture
 
-3. **SimCSE Model Training and In-Context Classification**  
-   Conducted in: `COMP90042_2025/Model Implementation&Evaluation_Simcse.ipynb`  
-   Using data generated from steps 1 and 2, a SimCSE model is trained. The trained model is then used to retrieve and classify evidence for `dev-claims` through in-context learning.
+### 🔥 Main Pipeline (Production)
 
-##  File Structure
+Implemented in:
 
 ```
-COMP90042_2025/
-├── pycache/
+notebooks/main_info_retrieval_pipeline.ipynb
+```
+
+### Pipeline Flow
+
+```
+Claims → Hybrid Retrieval → Re-ranking → LLM Classification → Final Predictions
+```
+
+---
+
+## ⚙️ Core Components
+
+### 1. Preprocessing
+
+* Stage-specific text processing
+* Optimised for retrieval and classification
+
+---
+
+### 2. Hybrid Retrieval (Key Contribution)
+
+* **BM25 (Pyserini)** → lexical matching
+* **MiniLM bi-encoder (DPR)** → semantic retrieval
+* Merge candidates into hybrid pool
+
+✅ Improves recall significantly
+
+---
+
+### 3. Cross-Encoder Re-ranking
+
+* Model: `MiniLM cross-encoder`
+* Curriculum learning:
+
+  * Phase 1 → random negatives
+  * Phase 2 → hard negatives
+
+✅ Produces top-5 high-quality evidence
+
+---
+
+### 4. LLM-Based Classification
+
+* Models:
+
+  * TinyLlama (best)
+  * Qwen1.5
+  * Phi-1.5
+
+* Zero-shot prompt-based classification
+
+Handles:
+
+* Conflicting evidence → `DISPUTED`
+* Missing evidence → `NOT_ENOUGH_INFO`
+
+---
+
+## ⚠️ Experimental Pipelines (Exploration Only)
+
+Not used in final system due to lower performance.
+
+### Perplexity Filtering
+
+```
+notebooks/experiment_perplexity.ipynb
+```
+
+### FAISS Retrieval
+
+```
+notebooks/experiment_faiss.ipynb
+```
+
+### SimCSE Pipeline
+
+```
+notebooks/simcse_and_classification.ipynb
+```
+
+🔎 Findings:
+
+* SimCSE retrieves semantically relevant but low gold-match evidence
+* FAISS filtering lacks robustness
+* Hybrid pipeline outperforms alternatives
+
+---
+
+## 📊 Results
+
+* **F-A Harmonic Mean:** ~0.283
+* Significant improvement over baseline (~0.08)
+
+### Key Insights
+
+* Hybrid retrieval boosts recall
+* Curriculum learning improves stability
+* TinyLlama outperforms larger models
+* Strong pipeline > large model alone
+
+---
+
+## 📂 Project Structure
+
+```
+.
+├── notebooks/
+│   ├── main_info_retrieval_pipeline.ipynb
+│   ├── experiment_faiss.ipynb
+│   ├── experiment_perplexity.ipynb
+│   ├── simcse_and_classification.ipynb
+│
 ├── data/
-├── FactChecking_2025/
+│   ├── train-claims.json
+│   ├── dev-claims.json
+│   └── test-claims-unlabelled.json
+│
 ├── generate_train_dataset/
+├── Sim_tools/
+├── saved_model/
 ├── local_data/
 ├── log/
-├── saved_model/
-├── Sim_tools/
-├── .gitignore
-├── COMP90042_Project_2025.ipynb
-├── DataSet Processing_PPL.ipynb
-├── DataSet Processing2_Faiss.ipynb
+│
 ├── eval.py
-├── Model Implementation&Evaluation_Simcse.ipynb
-├── Project Group.md
-├── README_COMP90042_Project.md
 ├── README.md
+├── LICENSE
 ```
 
-##  Running the Project
+---
 
-1. **Google Colab Setup**
-   - Mount Google Drive and set the correct `data_dir` path.
-   - Ensure evidence and claims JSON files are stored under the path.
+## ⚙️ Setup & Running
 
-2. **Install Required Libraries**
-   ```python
-   !pip install pyserini
-   !pip install transformers sentence-transformers faiss-cpu
-   !pip install nltk
-   ```
+### Install Dependencies
 
-3. **Run Notebook Sections in Order**
-   - Preprocessing
-   - Lexical & dense retrieval
-   - Re-ranking via cross-encoder
-   - Zero-shot classification
-   - Export predictions
+```bash
+pip install pyserini
+pip install transformers sentence-transformers faiss-cpu
+pip install nltk
+```
 
-4. **Evaluate (Dev Set Only)**
-   ```bash
-   python eval.py \
-       --predictions dev-claims-predictions.json \
-       --groundtruth dev-claims.json
-   ```
+---
 
-##  Evaluation Metrics
+### Run Pipeline
 
-We use three official metrics:
+Open:
 
-- **Evidence Retrieval F1 (F):** Quality of retrieved evidence passages.
-- **Claim Classification Accuracy (A):** Correctness of predicted claim labels.
-- **F-A Harmonic Mean:** Final score used for leaderboard and internal analysis.
+```
+notebooks/main_info_retrieval_pipeline.ipynb
+```
 
-##  Notes
+Run in order:
 
-- Follows all COMP90042 rules: no external APIs, only open-source LLMs under 12GB.
-- All models used (MiniLM, TinyLlama) fit in free-tier Colab GPUs.
-- SimCSE and BERTopic are implemented as auxiliary methods and evaluated.
+* Preprocessing
+* Retrieval
+* Re-ranking
+* Classification
 
-##  Contributors
+---
 
-- **Yechen Deng**: Retrieval and cross-encoder re-ranking
-- **Zhenyuan He**: SimCSE, in-context learning, classification
-- **Wen Zhou**: BERTopic + NER retrieval logic, performance tuning
+### Evaluate
+
+```bash
+python eval.py \
+  --predictions dev-claims-predictions.json \
+  --groundtruth dev-claims.json
+```
+
+---
+
+## 📈 Evaluation Metrics
+
+* Evidence Retrieval F1
+* Classification Accuracy
+* F-A Harmonic Mean
+
+---
+
+## 👥 Contributors
+
+* **Yechen Deng** — Retrieval, re-ranking, main pipepline
+* **Zhenyuan He** — SimCSE, FAISS, LLM classification
+* **Wen Zhou** — BERTopic, analysis, experiments
+
+---
+
+## 📄 License
+
+MIT License
