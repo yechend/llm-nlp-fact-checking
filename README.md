@@ -122,7 +122,7 @@ notebooks/simcse_and_classification.ipynb
 ## 📊 Results
 ![Model Performance]
 <p align="center">
-  <img src="docs/results.png" width="700"/>
+  <img src="local_data/results.png" width="700"/>
 </p>
 
 **Key Insights:**
@@ -137,7 +137,7 @@ notebooks/simcse_and_classification.ipynb
 
 ![Recall vs Accuracy]
 <p align="center">
-  <img src="docs/recall_accuracy.png" width="700"/>
+  <img src="local_data/recall_accuracy.png" width="700"/>
 </p>
 
 **Key Insights:**
