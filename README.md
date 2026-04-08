@@ -211,7 +211,7 @@ python eval.py \
 
 ## 👥 Contributors
 
-* **Yechen Deng** — Retrieval, re-ranking, main pipepline
+* **Yechen Deng** — Retrieval, re-ranking, LLM classification
 * **Zhenyuan He** — SimCSE, FAISS, LLM classification
 * **Wen Zhou** — BERTopic, analysis, experiments
 
