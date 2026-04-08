@@ -3,10 +3,6 @@ import sys
 import json
 import numpy as np
 
-######
-#main#
-######
-
 def main(args):
 
     try:
