@@ -1,4 +1,4 @@
-# 🧠 LLM-NLP Fact-Checking Pipeline
+# LLM-NLP Fact-Checking Pipeline
 
 ### Multi-Phase Retrieval & Classification for Climate Claims
 
@@ -21,14 +21,11 @@ The system processes **1.2M+ evidence sentences** and classifies claims into:
 
 Developed as part of **COMP90042 (NLP, University of Melbourne)**, this project demonstrates a **modular, production-style NLP pipeline**.
 
-📄 Full report:
-👉 [Project Report](docs/NLP.pdf)
-
 ---
 
 ## 🏗️ System Architecture
 
-### 🔥 Main Pipeline (Production)
+### Main Pipeline (Production)
 
 Implemented in:
 
@@ -124,6 +121,7 @@ notebooks/simcse_and_classification.ipynb
 
 ## 📊 Results
 
+
 * **F-A Harmonic Mean:** ~0.283
 * Significant improvement over baseline (~0.08)
 
@@ -145,6 +143,7 @@ notebooks/simcse_and_classification.ipynb
 │   ├── experiment_faiss.ipynb
 │   ├── experiment_perplexity.ipynb
 │   ├── simcse_and_classification.ipynb
+│   └── eval.py
 │
 ├── data/
 │   ├── train-claims.json
@@ -157,7 +156,6 @@ notebooks/simcse_and_classification.ipynb
 ├── local_data/
 ├── log/
 │
-├── eval.py
 ├── README.md
 ├── LICENSE
 ```
