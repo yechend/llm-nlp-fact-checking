@@ -120,10 +120,31 @@ notebooks/simcse_and_classification.ipynb
 ---
 
 ## 📊 Results
+![Model Performance]
+<p align="center">
+  <img src="docs/results.png" width="700"/>
+</p>
 
+**Key Insights:**
+- The **Hybrid Retrieval (MiniLM) + TinyLlama** configuration achieves the best overall performance  
+- Significant improvement over baseline (**0.08 → ~0.28 F-A score**)  
+- Smaller LLMs outperform larger ones when paired with strong retrieval pipelines  
+- Demonstrates that **pipeline design > model size**
 
-* **F-A Harmonic Mean:** ~0.283
-* Significant improvement over baseline (~0.08)
+---
+
+### 📈 Retrieval Trade-off (Recall vs Accuracy)
+
+![Recall vs Accuracy]
+<p align="center">
+  <img src="docs/recall_accuracy.png" width="700"/>
+</p>
+
+**Key Insights:**
+- Increasing **Top-K** improves recall but introduces noise  
+- MiniLM achieves a strong balance between **semantic recall and classification accuracy**  
+- RoBERTa provides higher recall but does not translate proportionally to accuracy gains  
+- Highlights importance of **re-ranking and evidence filtering**
 
 ### Key Insights
 
