@@ -147,26 +147,52 @@ notebooks/simcse_and_classification.ipynb
 ## 📂 Project Structure
 
 ```
-.
+llm-nlp-fact-checking
 ├── notebooks/
 │   ├── main_info_retrieval_pipeline.ipynb
+│   │   └── End-to-end pipeline: retrieval, re-ranking, and classification
 │   ├── experiment_faiss.ipynb
+│   │   └── FAISS-based retrieval experiments
 │   ├── experiment_perplexity.ipynb
+│   │   └── Perplexity-based filtering experiments
 │   ├── simcse_and_classification.ipynb
+│   │   └── SimCSE retrieval and classification workflow
 │   └── eval.py
+│       └── Evaluation script for model predictions
 │
 ├── data/
 │   ├── train-claims.json
 │   ├── dev-claims.json
 │   └── test-claims-unlabelled.json
+│   └── Core datasets for training, validation, and testing
 │
 ├── generate_train_dataset/
+│   ├── Scripts for constructing training datasets
+│   └── Includes evidence sampling and dataset generation logic
+│
 ├── Sim_tools/
+│   ├── dataset_Sim.py
+│   ├── embed_evidence.py
+│   ├── model_Sim.py
+│   ├── train_Sim.py
+│   ├── train_classifier.py
+│   └── Utility modules for embedding, training, and similarity modelling
+│
 ├── saved_model/
+│   └── Stored trained models and checkpoints
+│
 ├── local_data/
+│   ├── Intermediate data, embeddings, and final prediction outputs
+│   └── Includes evaluation results and visualisations
+│
 ├── log/
+│   ├── Training logs, loss curves, and performance metrics
+│   └── Tracks experiments across different configurations
+│
 ├── README.md
-├── LICENSE
+│   └── Project overview, methodology, and usage instructions
+│
+└── LICENSE
 ```
 
 ---
