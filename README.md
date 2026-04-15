@@ -147,7 +147,7 @@ notebooks/simcse_and_classification.ipynb
 ## 📂 Project Structure
 
 ```
-llm-nlp-fact-checking
+llm-nlp-fact-checking/
 ├── notebooks/
 │   ├── main_info_retrieval_pipeline.ipynb
 │   │   └── End-to-end pipeline: retrieval, re-ranking, and classification
